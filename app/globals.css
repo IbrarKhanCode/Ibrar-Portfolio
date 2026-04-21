@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
 :root {
+  --container-max: 1240px;
+  --container-gutter: 24px;
   --bg-main: #0f172a;
   --bg-soft: #112240;
   --bg-soft-2: #1e293b;
@@ -263,9 +265,9 @@ b {
    ============================================================ */
 
 .site-shell {
-  max-width: 1240px;
+  max-width: var(--container-max);
   margin: 0 auto;
-  padding: 88px 24px 40px;
+  padding: 88px var(--container-gutter) 40px;
 }
 
 .left-column {
@@ -329,7 +331,7 @@ b {
 
 .card-surface:hover {
   transform: translateY(-4px);
-  border-color: rgba(94, 234, 212, 0.25);
+  border-color: transparent;
   background: rgba(17, 34, 64, 0.62);
   box-shadow: 0 16px 36px -18px rgba(2, 6, 23, 0.95), 0 0 0 1px rgba(94, 234, 212, 0.06);
 }
@@ -558,9 +560,9 @@ b {
 }
 
 .app-nav-inner {
-  max-width: 1240px;
+  max-width: var(--container-max);
   margin: 0 auto;
-  padding: 14px 24px;
+  padding: 14px var(--container-gutter);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -632,11 +634,6 @@ b {
   transform: scaleX(1);
 }
 
-.app-nav-link .num,
-.mobile-menu .num {
-  color: var(--accent);
-  margin-right: 6px;
-}
 
 .mobile-menu-button {
   display: none;
@@ -876,14 +873,14 @@ b {
 
 .bottom-socials-left {
   position: fixed;
-  left: 26px;
-  bottom: 22px;
+  left: max(var(--container-gutter), calc((100% - var(--container-max)) / 2 + var(--container-gutter)));
+  bottom: 48px;
   z-index: 40;
   display: flex;
-  gap: 12px;
+  gap: 16px;
   align-items: center;
   width: max-content;
-  max-width: calc(100% - 52px);
+  max-width: calc(100% - (var(--container-gutter) * 2));
   white-space: nowrap;
   pointer-events: none;
 }
@@ -931,6 +928,73 @@ b {
 }
 
 /* ============================================================
+   CONTACT
+   ============================================================ */
+
+.contact-shell {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.contact-kicker {
+  color: var(--accent);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  margin-bottom: 12px;
+}
+
+.contact-title {
+  font-size: clamp(22px, 2.6vw, 34px);
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+
+.contact-summary {
+  font-size: inherit;
+  max-width: 64ch;
+  margin-bottom: 20px;
+}
+
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.contact-card {
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background: rgba(17, 34, 64, 0);
+}
+
+.contact-card-label {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+}
+
+.contact-card-value {
+  color: var(--text-body);
+  font-size: 15px;
+  line-height: 1.4;
+  word-break: break-word;
+  transition: color 0.2s ease;
+}
+
+.contact-card-value:hover {
+  color: var(--accent);
+}
+
+/* ============================================================
    SCROLLBAR
    ============================================================ */
 
@@ -952,11 +1016,29 @@ b {
    ============================================================ */
 
 @media (min-width: 1024px) {
+  .section-content-inset {
+    padding-inline: 18px;
+  }
+
+  .app-nav-inner {
+    display: grid;
+    grid-template-columns: 48% 52%;
+    gap: 28px;
+  }
+
+  .app-brand {
+    justify-self: start;
+  }
+
+  .app-nav-links {
+    justify-self: start;
+  }
+
   .site-shell {
     display: flex;
     justify-content: space-between;
     gap: 28px;
-    padding: 0 24px;
+    padding: 0 var(--container-gutter);
   }
 
   .left-column {
@@ -1055,7 +1137,7 @@ b {
 
   .hero-panel {
     padding-top: 4px;
-    text-align: center;
+    text-align: left;
   }
 
   .hero-panel p,
@@ -1068,11 +1150,11 @@ b {
   .hero-heading-copy {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
   }
 
   .hero-actions {
-    justify-content: center;
+    justify-content: flex-start;
   }
 }
 
@@ -1097,6 +1179,10 @@ b {
 
   .site-shell {
     padding-top: 84px;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
   }
 }
 

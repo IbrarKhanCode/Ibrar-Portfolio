@@ -1,13 +1,5 @@
 import Image from "next/image";
 
-const jumpLinks = [
-  { label: "About", href: "#about" },
-  { label: "Experience", href: "#experience" },
-  { label: "Projects", href: "#projects" },
-  { label: "Skills", href: "#skills" },
-  { label: "Contact", href: "#contact" },
-];
-
 export default function Hero() {
   return (
     <section id="home" className="hero-panel" aria-label="Introduction">
@@ -57,20 +49,7 @@ export default function Hero() {
         product experiences with clean architecture.
       </p>
 
-      <nav
-        className="hero-jump-list reveal"
-        style={{ animationDelay: "0.36s" }}
-        aria-label="In-page links"
-      >
-        {jumpLinks.map((link, index) => (
-          <a key={link.href} href={link.href} className="hero-jump-link">
-            <span className="hero-jump-line" />
-            <span>
-              0{index + 1}. {link.label}
-            </span>
-          </a>
-        ))}
-      </nav>
+      {/* hero jump links removed */}
 
       <div className="hero-actions reveal" style={{ animationDelay: "0.44s" }}>
         <a

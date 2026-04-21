@@ -16,7 +16,7 @@ type Project = {
 const projects: Project[] = [
   {
     title: "HalaCareer",
-    logo: "/genie.svg",
+    logo: "/halacareer_logo.png",
     status: "In Progress",
     tagline: "Track/course learning and company team management platform",
     description:
@@ -28,6 +28,26 @@ const projects: Project[] = [
       "Developed robust API-driven state handling with loading/error UX and edge-case handling for auth, validation, and backend response variations.",
     ],
     tech: ["Flutter", "BLoC", "REST APIs", "State Management", "Dashboard"],
+    screenshots: [
+      { src: "/halacareer/first.jpeg", alt: "HalaCareer first screen" },
+      { src: "/halacareer/second.jpeg", alt: "HalaCareer second screen" },
+      { src: "/halacareer/third.jpeg", alt: "HalaCareer third screen" },
+      { src: "/halacareer/fourth.jpeg", alt: "HalaCareer fourth screen" },
+      { src: "/halacareer/fifth.jpeg", alt: "HalaCareer fifth screen" },
+      { src: "/halacareer/sixth.jpeg", alt: "HalaCareer sixth screen" },
+      { src: "/halacareer/seventh.jpeg", alt: "HalaCareer seventh screen" },
+      { src: "/halacareer/eight.jpeg", alt: "HalaCareer eighth screen" },
+      { src: "/halacareer/ninth.jpeg", alt: "HalaCareer ninth screen" },
+      { src: "/halacareer/tenth.jpeg", alt: "HalaCareer tenth screen" },
+      { src: "/halacareer/eleven.jpeg", alt: "HalaCareer eleventh screen" },
+      { src: "/halacareer/twelve.jpeg", alt: "HalaCareer twelfth screen" },
+      { src: "/halacareer/thirteen.jpeg", alt: "HalaCareer thirteenth screen" },
+      { src: "/halacareer/fourteen.jpeg", alt: "HalaCareer fourteenth screen" },
+      { src: "/halacareer/fifteen.jpeg", alt: "HalaCareer fifteenth screen" },
+      { src: "/halacareer/sixteen.jpeg", alt: "HalaCareer sixteenth screen" },
+      { src: "/halacareer/seventeen.jpeg", alt: "HalaCareer seventeenth screen" },
+      { src: "/halacareer/eighteen.jpeg", alt: "HalaCareer eighteenth screen" },
+    ],
     links: [
       { label: "In Progress", href: "#" },
     ],

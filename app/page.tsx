@@ -5,7 +5,6 @@ import Experience from "@/components/Experience";
 import Projects from "@/components/Projects";
 import Skills from "@/components/Skills";
 import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
 import SideRails from "@/components/SideRails";
 import CursorMoodOverlay from "@/components/CursorMoodOverlay";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -27,7 +26,6 @@ export default function Home() {
           <Projects />
           <Skills />
           <Contact />
-          <Footer />
         </section>
       </main>
     </>

@@ -19,8 +19,17 @@ export default function Navbar() {
     };
   }, [menuOpen]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 900) {
+        setMenuOpen(false);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const links = [
-    { label: "Home", href: "#home" },
     { label: "About", href: "#about" },
     { label: "Experience", href: "#experience" },
     { label: "Projects", href: "#projects" },
@@ -45,9 +54,8 @@ export default function Navbar() {
         </a>
 
         <div className="app-nav-links" role="navigation" aria-label="Primary navigation">
-          {links.map((link, index) => (
+          {links.map((link) => (
             <a key={link.href} href={link.href} className="app-nav-link">
-              <span className="num">0{index + 1}.</span>
               {link.label}
             </a>
           ))}
@@ -62,18 +70,23 @@ export default function Navbar() {
           aria-label="Toggle mobile menu"
           aria-expanded={menuOpen}
         >
-          Menu
+          {menuOpen ? "Close" : "Menu"}
         </button>
       </div>
 
-      <div className={`mobile-menu ${menuOpen ? "open" : ""}`}>
-        {links.map((link, index) => (
+      <div className={`mobile-menu ${menuOpen ? "open" : ""}`} role="navigation" aria-label="Mobile navigation">
+        {links.map((link) => (
           <a key={link.href} href={link.href} onClick={() => setMenuOpen(false)}>
-            <span className="num">0{index + 1}.</span> {link.label}
+            {link.label}
           </a>
         ))}
-        <a href="mailto:ibrarflutterdev@gmail.com" onClick={() => setMenuOpen(false)}>
-          <span className="num">07.</span> Say Hello
+        <a
+          href="/cv/Muhammad%20Ibrar%20Flutter.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => setMenuOpen(false)}
+        >
+          Resume
         </a>
       </div>
     </nav>

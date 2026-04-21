@@ -11,7 +11,7 @@ const coreTech = [
 
 export default function About() {
   return (
-    <section id="about" className="content-section">
+    <section id="about" className="content-section section-content-inset">
       <p className="reveal" style={{ animationDelay: "0.04s" }}>
         I am a Flutter developer with professional experience shipping real-world mobile apps across
         booking, social, and real-time product domains. I enjoy building interfaces that are clear,
