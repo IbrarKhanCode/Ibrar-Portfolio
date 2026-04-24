@@ -50,6 +50,11 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  icons: {
+    icon: [{ url: "/ibrar.png", type: "image/png" }],
+    shortcut: [{ url: "/ibrar.png", type: "image/png" }],
+    apple: [{ url: "/ibrar.png", type: "image/png" }],
+  },
 };
 
 export default function RootLayout({
@@ -62,6 +67,9 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#0f172a" />
+        <link rel="icon" href="/ibrar.png" type="image/png" />
+        <link rel="shortcut icon" href="/ibrar.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/ibrar.png" />
       </head>
       <body className={`${inter.variable} ${robotoMono.variable}`}>{children}</body>
     </html>
