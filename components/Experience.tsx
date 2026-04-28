@@ -17,6 +17,7 @@ const experiences = [
     period: "Aug 2025 — Dec 2025",
     role: "Flutter Developer",
     company: "Apifiny",
+    companyUrl: "https://www.linkedin.com/company/apifinytech/posts/?feedView=all",
     summary:
       "Worked on an AI-powered dating app focused on high-quality UX, feature reliability, and scalable Firebase architecture.",
     points: [

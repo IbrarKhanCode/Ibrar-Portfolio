@@ -53,7 +53,7 @@ export default function Hero() {
 
       <div className="hero-actions reveal" style={{ animationDelay: "0.44s" }}>
         <a
-          href="/cv/Muhammad%20Ibrar%20Flutter.pdf"
+          href="/resume/Muhammad%20Ibrar%20Flutter.pdf"
           target="_blank"
           rel="noopener noreferrer"
           className="btn-accent"

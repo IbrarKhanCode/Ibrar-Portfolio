@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import { Inter, Roboto_Mono } from "next/font/google";
+import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
 });
 
-const robotoMono = Roboto_Mono({
+const jetBrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
   display: "swap",
@@ -71,7 +71,7 @@ export default function RootLayout({
         <link rel="shortcut icon" href="/ibrar.png" type="image/png" />
         <link rel="apple-touch-icon" href="/ibrar.png" />
       </head>
-      <body className={`${inter.variable} ${robotoMono.variable}`}>{children}</body>
+      <body className={`${spaceGrotesk.variable} ${jetBrainsMono.variable}`}>{children}</body>
     </html>
   );
 }

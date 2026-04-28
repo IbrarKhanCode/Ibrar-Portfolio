@@ -49,6 +49,7 @@ const projects: Project[] = [
       { src: "/halacareer/eighteen.jpeg", alt: "HalaCareer eighteenth screen" },
     ],
     links: [
+      { label: "App Store", href: "https://apps.apple.com/sa/app/halacareer/id6759287310" },
       { label: "In Progress", href: "#" },
     ],
   },
