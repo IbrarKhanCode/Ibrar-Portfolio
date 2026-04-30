@@ -63,21 +63,14 @@ npm run start
 
 The screenshots below are stored in `public/readme/` and are included here for quick reference.
 
-### Home
-
-![Portfolio screenshot 1](public/readme/1.jpeg)
-
-### About and Experience
-
-![Portfolio screenshot 2](public/readme/2.jpeg)
-
-### Projects
-
-![Portfolio screenshot 3](public/readme/3.jpeg)
-
-### Skills and Contact
-
-![Portfolio screenshot 4](public/readme/4.jpeg)
+<table>
+	<tr>
+		<td align="center" width="25%"><img src="public/readme/1.jpeg" alt="Portfolio screenshot 1" width="100%" /></td>
+		<td align="center" width="25%"><img src="public/readme/2.jpeg" alt="Portfolio screenshot 2" width="100%" /></td>
+		<td align="center" width="25%"><img src="public/readme/3.jpeg" alt="Portfolio screenshot 3" width="100%" /></td>
+		<td align="center" width="25%"><img src="public/readme/4.jpeg" alt="Portfolio screenshot 4" width="100%" /></td>
+	</tr>
+</table>
 
 ## Contact
 
