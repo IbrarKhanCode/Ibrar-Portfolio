@@ -137,10 +137,11 @@ export default function Projects() {
         {projects.map((project, index) => (
           <li
             key={project.title}
-            className="card-surface stack-item reveal"
+            className="project-shell reveal"
             style={{ animationDelay: `${0.06 + index * 0.1}s` }}
           >
-            <div className="meta-row" style={{ marginBottom: 16 }}>
+            <div className="card-surface stack-item project-summary">
+              <div className="meta-row" style={{ marginBottom: 16 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
                 <div
                   style={{
@@ -187,10 +188,6 @@ export default function Projects() {
               </ul>
             ) : null}
 
-            {project.screenshots && project.screenshots.length > 0 ? (
-              <GenieSlider images={project.screenshots} projectName={project.title} />
-            ) : null}
-
             <div style={{ marginTop: 14, display: "flex", flexWrap: "wrap", gap: 8 }}>
               {project.tech.map((tech) => (
                 <span key={tech} className="badge">
@@ -213,6 +210,13 @@ export default function Projects() {
                 </a>
               ))}
             </div>
+            </div>
+
+            {project.screenshots && project.screenshots.length > 0 ? (
+              <div className="project-screenshots">
+                <GenieSlider images={project.screenshots} projectName={project.title} />
+              </div>
+            ) : null}
           </li>
         ))}
       </ul>

@@ -19,7 +19,7 @@ export default function CursorMoodOverlay() {
 
   const backgroundImage = useMotionTemplate`radial-gradient(
     ${smoothSize}px circle at ${smoothX}px ${smoothY}px,
-    rgba(29, 78, 216, 0.15),
+    rgb(var(--accent-rgb) / 0.16),
     rgba(0, 0, 0, 0) 80%
   )`;
 

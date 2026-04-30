@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 
 type GenieImage = {
@@ -21,6 +21,8 @@ export default function GenieSlider({ images, projectName = "Project" }: GenieSl
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const sliderRef = useRef<HTMLElement | null>(null);
+  const [isInView, setIsInView] = useState(true);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -35,7 +37,28 @@ export default function GenieSlider({ images, projectName = "Project" }: GenieSl
   }, []);
 
   useEffect(() => {
-    if (safeImages.length < 2 || isPaused || prefersReducedMotion) {
+    const element = sliderRef.current;
+
+    if (!element || typeof IntersectionObserver === "undefined") {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting && entry.intersectionRatio >= 0.55);
+      },
+      { threshold: [0, 0.55, 1] }
+    );
+
+    observer.observe(element);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (safeImages.length < 2 || isPaused || prefersReducedMotion || !isInView) {
       return;
     }
 
@@ -46,13 +69,14 @@ export default function GenieSlider({ images, projectName = "Project" }: GenieSl
     return () => {
       window.clearInterval(timer);
     };
-  }, [isPaused, prefersReducedMotion, safeImages.length]);
+  }, [isInView, isPaused, prefersReducedMotion, safeImages.length]);
 
   const previousIndex = (activeIndex - 1 + safeImages.length) % safeImages.length;
   const nextIndex = (activeIndex + 1) % safeImages.length;
 
   return (
     <figure
+      ref={sliderRef as React.RefObject<HTMLElement>}
       className="genie-slider reveal-scale"
       aria-label={`${projectName} app screenshots`}
       onMouseEnter={() => setIsPaused(true)}
