@@ -59,7 +59,7 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
-          <a href="/resume/Muhammad%20Ibrar%20Flutter.pdf" target="_blank" rel="noopener noreferrer" className="btn-accent">
+          <a href="/cv/Muhammad%20Ibrar%20Flutter.pdf" target="_blank" rel="noopener noreferrer" className="btn-accent">
             Resume
           </a>
         </div>
@@ -81,7 +81,7 @@ export default function Navbar() {
           </a>
         ))}
         <a
-          href="/resume/Muhammad%20Ibrar%20Flutter.pdf"
+          href="/cv/Muhammad%20Ibrar%20Flutter.pdf"
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => setMenuOpen(false)}

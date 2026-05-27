@@ -4,9 +4,6 @@ import { useEffect } from "react";
 
 export default function ScrollReveal() {
   useEffect(() => {
-    const root = document.documentElement;
-    root.classList.add("js");
-
     const selectors = ".reveal, .reveal-left, .reveal-right, .reveal-scale";
     const targets = Array.from(document.querySelectorAll<HTMLElement>(selectors));
 

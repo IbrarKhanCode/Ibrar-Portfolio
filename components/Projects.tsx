@@ -128,13 +128,48 @@ const projects: Project[] = [
       { label: "In Progress", href: "#" },
     ],
   },
+  {
+    title: "Penny Pulse",
+    logo: "/penny_pulse_logo.png",
+    status: "Featured",
+    tagline: "AI-powered expense tracker",
+    description:
+      "Penny Pulse is a full-stack personal finance application built with Flutter, FastAPI, and machine learning. It lets users add expenses by text or voice and predicts expense categories plus Need/Want classification with custom NLP models.",
+    highlights: [
+      "Built a modern fintech-style UI with Material 3, Riverpod state management, real-time charts, secure authentication, and REST API integration.",
+      "Developed and optimized a large real-world dataset with Roman Urdu and English support for stronger expense prediction results.",
+      "Trained scikit-learn models for intelligent category prediction and Need/Want classification using custom NLP workflows.",
+      "Deployed the backend on Hugging Face Spaces with Docker for a reproducible production setup.",
+    ],
+    tech: ["Flutter", "FastAPI", "Machine Learning", "Riverpod", "Docker"],
+    screenshots: [
+      { src: "/penny_pulse/1.png", alt: "Penny Pulse screen 1" },
+      { src: "/penny_pulse/2.png", alt: "Penny Pulse screen 2" },
+      { src: "/penny_pulse/3.png", alt: "Penny Pulse screen 3" },
+      { src: "/penny_pulse/4.png", alt: "Penny Pulse screen 4" },
+      { src: "/penny_pulse/5.png", alt: "Penny Pulse screen 5" },
+      { src: "/penny_pulse/6.png", alt: "Penny Pulse screen 6" },
+      { src: "/penny_pulse/7.png", alt: "Penny Pulse screen 7" },
+      { src: "/penny_pulse/8.png", alt: "Penny Pulse screen 8" },
+      { src: "/penny_pulse/9.png", alt: "Penny Pulse screen 9" },
+      { src: "/penny_pulse/10.png", alt: "Penny Pulse screen 10" },
+      { src: "/penny_pulse/11.png", alt: "Penny Pulse screen 11" },
+      { src: "/penny_pulse/12.png", alt: "Penny Pulse screen 12" },
+    ],
+    links: [
+      { label: "In Progress", href: "#" },
+    ],
+  },
 ];
 
 export default function Projects() {
   return (
     <section id="projects" className="content-section">
       <ul className="stack-list" aria-label="Project list">
-        {projects.map((project, index) => (
+        {projects.map((project, index) => {
+          const isPennyPulse = project.title === "Penny Pulse";
+
+          return (
           <li
             key={project.title}
             className="project-shell reveal"
@@ -147,7 +182,7 @@ export default function Projects() {
                   style={{
                     width: 54,
                     height: 54,
-                    borderRadius: 12,
+                    borderRadius: isPennyPulse ? 999 : 12,
                     border: "1px solid var(--border)",
                     background: "#f8fafc",
                     position: "relative",
@@ -160,7 +195,10 @@ export default function Projects() {
                     alt={`${project.title} logo`}
                     fill
                     sizes="54px"
-                    style={{ objectFit: "contain", padding: 7 }}
+                    style={{
+                      objectFit: isPennyPulse ? "cover" : "contain",
+                      padding: isPennyPulse ? 0 : 7,
+                    }}
                   />
                 </div>
                 <div>
@@ -218,7 +256,8 @@ export default function Projects() {
               </div>
             ) : null}
           </li>
-        ))}
+          );
+        })}
       </ul>
     </section>
   );

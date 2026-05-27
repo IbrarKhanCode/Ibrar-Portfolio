@@ -13,7 +13,7 @@ export default function Hero() {
             width={132}
             height={132}
             sizes="132px"
-            priority
+            loading="eager"
             style={{ objectFit: "cover", objectPosition: "center top" }}
           />
         </div>
@@ -29,21 +29,21 @@ export default function Hero() {
             fill
             sizes="(max-width: 1023px) 0px, 132px"
             className="hero-portrait-image"
-            priority
+            loading="eager"
           />
         </div>
 
         <div className="hero-heading-copy">
-          <p className="hero-kicker reveal" style={{ animationDelay: "0.1s" }}>
+          <p className="hero-kicker">
             Hi, my name is
           </p>
-          <h1 className="hero-title reveal" style={{ animationDelay: "0.18s" }}>
+          <h1 className="hero-title">
             Muhammad Ibrar
           </h1>
         </div>
       </div>
 
-      <p className="hero-summary reveal" style={{ animationDelay: "0.28s" }}>
+      <p className="hero-summary">
         I am a Flutter developer focused on accessible, performant, and production-grade apps.
         I enjoy building thoughtful user interfaces, real-time mobile features, and scalable
         product experiences with clean architecture.
@@ -51,9 +51,9 @@ export default function Hero() {
 
       {/* hero jump links removed */}
 
-      <div className="hero-actions reveal" style={{ animationDelay: "0.44s" }}>
+      <div className="hero-actions">
         <a
-          href="/resume/Muhammad%20Ibrar%20Flutter.pdf"
+          href="/cv/Muhammad%20Ibrar%20Flutter.pdf"
           target="_blank"
           rel="noopener noreferrer"
           className="btn-accent"
