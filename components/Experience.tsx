@@ -1,3 +1,5 @@
+import SectionHeading from "@/components/SectionHeading";
+
 const experiences = [
   {
     period: "Jan 2026 — Present",
@@ -32,6 +34,13 @@ const experiences = [
 export default function Experience() {
   return (
     <section id="experience" className="content-section">
+      <SectionHeading
+        index="02"
+        title="Experience"
+        eyebrow="Where I’ve shipped work"
+        description="A snapshot of the product teams and delivery environments where I’ve contributed as a Flutter developer."
+      />
+
       <ul className="stack-list" aria-label="Work experience entries">
         {experiences.map((item, index) => (
           <li

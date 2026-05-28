@@ -1,14 +1,20 @@
+import SectionHeading from "@/components/SectionHeading";
+
 const groups = [
   {
-    title: "Core",
-    items: ["Flutter", "Dart", "Firebase", "REST APIs", "State Management"],
+    title: "Mobile Core",
+    items: ["Flutter", "Dart", "Firebase", "REST APIs", "Riverpod"],
   },
   {
-    title: "Mobile Features",
-    items: ["Real-Time Chat", "Maps", "Payments", "Push Notifications", "Localization"],
+    title: "Backend & Data",
+    items: ["FastAPI", "Machine Learning", "NLP", "Docker", "Hugging Face Spaces"],
   },
   {
-    title: "Workflow",
+    title: "Product Features",
+    items: ["Real-Time Chat", "Maps", "Payments", "Charts", "Localization"],
+  },
+  {
+    title: "Delivery Workflow",
     items: ["Git", "Postman", "Debugging", "Performance Tuning", "Team Delivery"],
   },
 ];
@@ -16,6 +22,13 @@ const groups = [
 export default function Skills() {
   return (
     <section id="skills" className="content-section">
+      <SectionHeading
+        index="04"
+        title="Skills"
+        eyebrow="Tools and capabilities"
+        description="The mobile, backend, data, and delivery stack I use to build and ship full product experiences."
+      />
+
       <div
         style={{
           display: "grid",

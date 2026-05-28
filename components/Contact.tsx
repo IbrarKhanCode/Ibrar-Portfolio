@@ -1,5 +1,7 @@
 "use client";
 
+import SectionHeading from "@/components/SectionHeading";
+
 export default function Contact() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -20,9 +22,14 @@ export default function Contact() {
       className="content-section section-content-inset reveal"
       style={{ animationDelay: "0.12s", marginBottom: 54 }}
     >
-      <div className="contact-shell">
-        <h2 className="contact-title">Let&apos;s Build Something Reliable</h2>
+      <SectionHeading
+        index="05"
+        title="Contact"
+        eyebrow="Let’s talk"
+        description="Open to Flutter and mobile product opportunities, collaborations, and focused freelance work."
+      />
 
+      <div className="contact-shell">
         <p className="contact-summary">
           I am currently open to new Flutter and mobile product opportunities. If you have a role,
           project, or collaboration in mind, drop a message below and I will get back to you.

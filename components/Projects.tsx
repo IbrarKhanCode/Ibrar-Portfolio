@@ -1,5 +1,6 @@
 import Image from "next/image";
 import GenieSlider from "@/components/GenieSlider";
+import SectionHeading from "@/components/SectionHeading";
 
 type Project = {
   title: string;
@@ -165,6 +166,13 @@ const projects: Project[] = [
 export default function Projects() {
   return (
     <section id="projects" className="content-section">
+      <SectionHeading
+        index="03"
+        title="Selected Projects"
+        eyebrow="Work that defines my portfolio"
+        description="A few production apps and product systems that show the range of interfaces, flows, and technical problems I’ve worked through."
+      />
+
       <ul className="stack-list" aria-label="Project list">
         {projects.map((project, index) => {
           const isPennyPulse = project.title === "Penny Pulse";
