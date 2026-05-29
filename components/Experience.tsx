@@ -33,7 +33,7 @@ const experiences = [
 
 export default function Experience() {
   return (
-    <section id="experience" className="content-section">
+    <section id="experience" className="content-section section-content-inset">
       <SectionHeading
         index="02"
         title="Experience"

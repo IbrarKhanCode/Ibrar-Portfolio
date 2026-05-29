@@ -5,9 +5,15 @@ import { useState, useEffect } from "react";
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+      const totalHeight = document.body.scrollHeight - window.innerHeight;
+      const progress = totalHeight > 0 ? (window.scrollY / totalHeight) * 100 : 0;
+      setScrollProgress(progress);
+    };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -39,9 +45,10 @@ export default function Navbar() {
 
   return (
     <nav className="app-nav" style={{ borderBottomColor: scrolled ? "var(--border-strong)" : "var(--border)" }}>
+      <div className="scroll-progress-bar" style={{ width: scrollProgress + "%" }} />
       <div className="app-nav-inner">
         <a href="#home" className="app-brand">
-          <span className="app-avatar" aria-hidden={!scrolled}>
+          <span className="app-avatar" aria-hidden={!scrolled} style={{ position: "relative" }}>
             <Image
               src="/ibrar.png"
               alt="Muhammad Ibrar avatar"

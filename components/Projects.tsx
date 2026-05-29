@@ -216,7 +216,15 @@ export default function Projects() {
                   </p>
                 </div>
               </div>
-              <span className="badge">{project.status}</span>
+              <span className={`badge ${
+                project.status === "Live"
+                  ? "badge-live"
+                  : project.status === "In Progress"
+                  ? "badge-progress"
+                  : project.status === "Featured"
+                  ? "badge-featured"
+                  : ""
+              }`}>{project.status}</span>
             </div>
 
             <p>{project.description}</p>

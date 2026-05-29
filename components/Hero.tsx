@@ -22,15 +22,17 @@ export default function Hero() {
       {/* ── Heading row with desktop portrait + name ── */}
       <div className="hero-heading-row">
         {/* Desktop portrait card (hidden on mobile via CSS) */}
-        <div className="hero-portrait-card">
-          <Image
-            src="/ibrar.png"
-            alt="Muhammad Ibrar"
-            fill
-            sizes="(max-width: 1023px) 0px, 132px"
-            className="hero-portrait-image"
-            loading="eager"
-          />
+        <div className="hero-portrait-card" style={{ position: "relative" }}>
+          <div style={{ borderRadius: "999px", overflow: "hidden", width: "100%", height: "100%", position: "relative" }}>
+            <Image
+              src="/ibrar.png"
+              alt="Muhammad Ibrar"
+              fill
+              sizes="(max-width: 1023px) 0px, 132px"
+              className="hero-portrait-image"
+              loading="eager"
+            />
+          </div>
         </div>
 
         <div className="hero-heading-copy">
@@ -43,24 +45,19 @@ export default function Hero() {
         </div>
       </div>
 
+      <div className="hero-typewriter"></div>
+
       <p className="hero-summary">
         I am a Flutter developer focused on accessible, performant, and production-grade apps.
         I enjoy building thoughtful user interfaces, real-time mobile features, and scalable
         product experiences with clean architecture.
       </p>
 
+
+
       {/* hero jump links removed */}
 
-      <div className="hero-actions">
-        <a
-          href="/cv/Muhammad%20Ibrar%20Flutter.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn-accent"
-        >
-          View CV
-        </a>
-      </div>
+
     </section>
   );
 }

@@ -407,6 +407,10 @@ b {
   margin-bottom: 0;
 }
 
+.project-screenshots .genie-slider-stage {
+  width: min(100%, clamp(120px, 23vw, 150px));
+}
+
 .stack-item {
   padding: 22px 18px;
 }
@@ -582,8 +586,8 @@ b {
 }
 
 .genie-dot {
-  width: 7px;
-  height: 7px;
+  width: 5px;
+  height: 5px;
   border-radius: 999px;
   border: 1px solid rgba(148, 163, 184, 0.45);
   background: rgba(148, 163, 184, 0.34);
@@ -593,7 +597,7 @@ b {
 }
 
 .genie-dot.active {
-  width: 18px;
+  width: 14px;
   border-color: var(--accent);
   background: var(--accent);
 }
@@ -747,6 +751,22 @@ b {
 
 .hero-panel {
   padding-top: 20px;
+  position: relative;
+}
+
+.hero-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, rgba(94, 234, 212, 0.12) 1px, transparent 1px);
+  background-size: 26px 26px;
+}
+
+.hero-panel > * {
+  position: relative;
+  z-index: 1;
 }
 
 .hero-heading-row {
@@ -835,17 +855,41 @@ b {
    PORTRAIT – DESKTOP (inside hero heading row)
    ============================================================ */
 
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes rotate-gradient {
+  0% {
+    --angle: 0deg;
+  }
+  100% {
+    --angle: 360deg;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
 .hero-portrait-card {
   width: 132px;
   height: 132px;
   border-radius: 999px;
-  border: 2px solid var(--border-strong);
-  background: linear-gradient(160deg, rgba(8, 16, 34, 0.7), rgba(12, 26, 52, 0.6));
+  padding: 3px;
+  background: conic-gradient(from var(--angle), #06b6d4, #8b5cf6, #06b6d4);
   overflow: hidden;
   position: relative;
   flex-shrink: 0;
   box-shadow: 0 14px 30px -16px rgba(2, 6, 23, 0.9), 0 0 0 4px rgba(94,234,212,0.1);
-  animation: portraitReveal 0.9s cubic-bezier(0.22,1,0.36,1) 0.05s both;
+  animation: rotate-gradient 4s linear infinite, portraitReveal 0.9s cubic-bezier(0.22,1,0.36,1) 0.05s both, float 4s ease-in-out infinite;
   transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
 }
 
@@ -1439,5 +1483,277 @@ b {
   .hero-title {
     font-size: 28px;
   }
+}
+
+
+/* ============================================================
+   UPGRADE: TASK 4 — Typewriter Effect Styling
+   ============================================================ */
+.hero-typewriter {
+  font-family: var(--font-mono), var(--font-mono-fallback);
+  color: var(--accent);
+  font-size: 15px;
+  min-height: 24px;
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.hero-typewriter::before {
+  content: "";
+  animation: typewriter-labels 16s steps(1) infinite;
+}
+
+.hero-typewriter::after {
+  content: "|";
+  margin-left: 2px;
+  color: var(--accent);
+  animation: cursor-blink 0.8s step-end infinite;
+}
+
+@keyframes cursor-blink {
+  from, to { color: transparent }
+  50% { color: var(--accent) }
+}
+
+@keyframes typewriter-labels {
+  /* "Flutter Developer" */
+  0.0% { content: ""; }
+  0.5% { content: "F"; }
+  1.0% { content: "Fl"; }
+  1.5% { content: "Flu"; }
+  2.0% { content: "Flut"; }
+  2.5% { content: "Flutt"; }
+  3.0% { content: "Flutte"; }
+  3.5% { content: "Flutter"; }
+  4.0% { content: "Flutter "; }
+  4.5% { content: "Flutter D"; }
+  5.0% { content: "Flutter De"; }
+  5.5% { content: "Flutter Dev"; }
+  6.0% { content: "Flutter Deve"; }
+  6.5% { content: "Flutter Devel"; }
+  7.0% { content: "Flutter Develo"; }
+  7.5% { content: "Flutter Develop"; }
+  8.0% { content: "Flutter Develope"; }
+  8.5%, 16.5% { content: "Flutter Developer"; }
+  17.0% { content: "Flutter Develope"; }
+  17.5% { content: "Flutter Develop"; }
+  18.0% { content: "Flutter Develo"; }
+  18.5% { content: "Flutter Devel"; }
+  19.0% { content: "Flutter Deve"; }
+  19.5% { content: "Flutter Dev"; }
+  20.0% { content: "Flutter De"; }
+  20.5% { content: "Flutter D"; }
+  21.0% { content: "Flutter "; }
+  21.5% { content: "Flutter"; }
+  22.0% { content: "Flutte"; }
+  22.5% { content: "Flut"; }
+  23.0% { content: "Flu"; }
+  23.5% { content: "Fl"; }
+  24.0% { content: "F"; }
+  24.5%, 25.0% { content: ""; }
+
+  /* "Mobile App Engineer" */
+  25.5% { content: "M"; }
+  26.0% { content: "Mo"; }
+  26.5% { content: "Mob"; }
+  27.0% { content: "Mobi"; }
+  27.5% { content: "Mobil"; }
+  28.0% { content: "Mobile"; }
+  28.5% { content: "Mobile "; }
+  29.0% { content: "Mobile A"; }
+  29.5% { content: "Mobile Ap"; }
+  30.0% { content: "Mobile App"; }
+  30.5% { content: "Mobile App "; }
+  31.0% { content: "Mobile App E"; }
+  31.5% { content: "Mobile App En"; }
+  32.0% { content: "Mobile App Eng"; }
+  32.5% { content: "Mobile App Engi"; }
+  33.0% { content: "Mobile App Engin"; }
+  33.5% { content: "Mobile App Engine"; }
+  34.0% { content: "Mobile App Enginee"; }
+  34.5%, 41.5% { content: "Mobile App Engineer"; }
+  42.0% { content: "Mobile App Enginee"; }
+  42.5% { content: "Mobile App Engine"; }
+  43.0% { content: "Mobile App Engin"; }
+  43.5% { content: "Mobile App Engi"; }
+  44.0% { content: "Mobile App Eng"; }
+  44.5% { content: "Mobile App En"; }
+  45.0% { content: "Mobile App E"; }
+  45.5% { content: "Mobile App "; }
+  46.0% { content: "Mobile App"; }
+  46.5% { content: "Mobile Ap"; }
+  47.0% { content: "Mobile A"; }
+  47.5% { content: "Mobile "; }
+  48.0% { content: "Mobile"; }
+  48.5% { content: "Mobil"; }
+  49.0% { content: "Mobi"; }
+  49.5% { content: "Mob"; }
+  50.0% { content: "Mo"; }
+  50.5% { content: "M"; }
+  51.0%, 52.0% { content: ""; }
+
+  /* "Firebase Specialist" */
+  52.5% { content: "F"; }
+  53.0% { content: "Fi"; }
+  53.5% { content: "Fir"; }
+  54.0% { content: "Fire"; }
+  54.5% { content: "Fireb"; }
+  55.0% { content: "Fireba"; }
+  55.5% { content: "Firebas"; }
+  56.0% { content: "Firebase"; }
+  56.5% { content: "Firebase "; }
+  57.0% { content: "Firebase S"; }
+  57.5% { content: "Firebase Sp"; }
+  58.0% { content: "Firebase Spe"; }
+  58.5% { content: "Firebase Spec"; }
+  59.0% { content: "Firebase Speci"; }
+  59.5% { content: "Firebase Specia"; }
+  60.0% { content: "Firebase Special"; }
+  60.5% { content: "Firebase Speciali"; }
+  61.0% { content: "Firebase Specialis"; }
+  61.5%, 68.5% { content: "Firebase Specialist"; }
+  69.0% { content: "Firebase Specialis"; }
+  69.5% { content: "Firebase Speciali"; }
+  70.0% { content: "Firebase Special"; }
+  70.5% { content: "Firebase Specia"; }
+  71.0% { content: "Firebase Speci"; }
+  71.5% { content: "Firebase Spec"; }
+  72.0% { content: "Firebase Spe"; }
+  72.5% { content: "Firebase Sp"; }
+  73.0% { content: "Firebase S"; }
+  73.5% { content: "Firebase "; }
+  74.0% { content: "Firebase"; }
+  74.5% { content: "Firebas"; }
+  75.0% { content: "Fireba"; }
+  75.5% { content: "Fireb"; }
+  76.0% { content: "Fire"; }
+  76.5% { content: "Fir"; }
+  77.0% { content: "Fi"; }
+  77.5% { content: "F"; }
+  78.0%, 79.0% { content: ""; }
+
+  /* "Production-Grade UI Builder" */
+  79.3% { content: "P"; }
+  79.6% { content: "Pr"; }
+  79.9% { content: "Pro"; }
+  80.2% { content: "Prod"; }
+  80.5% { content: "Produ"; }
+  80.8% { content: "Produc"; }
+  81.1% { content: "Product"; }
+  81.4% { content: "Producti"; }
+  81.7% { content: "Productio"; }
+  82.0% { content: "Production"; }
+  82.3% { content: "Production-"; }
+  82.6% { content: "Production-G"; }
+  82.9% { content: "Production-Gr"; }
+  83.2% { content: "Production-Gra"; }
+  83.5% { content: "Production-Grad"; }
+  83.8% { content: "Production-Grade"; }
+  84.1% { content: "Production-Grade "; }
+  84.4% { content: "Production-Grade U"; }
+  84.7% { content: "Production-Grade UI"; }
+  85.0% { content: "Production-Grade UI "; }
+  85.3% { content: "Production-Grade UI B"; }
+  85.6% { content: "Production-Grade UI Bu"; }
+  85.9% { content: "Production-Grade UI Bui"; }
+  86.2% { content: "Production-Grade UI Buil"; }
+  86.5% { content: "Production-Grade UI Build"; }
+  86.8% { content: "Production-Grade UI Builde"; }
+  87.1%, 94.1% { content: "Production-Grade UI Builder"; }
+  94.4% { content: "Production-Grade UI Builde"; }
+  94.7% { content: "Production-Grade UI Build"; }
+  95.0% { content: "Production-Grade UI Build"; }
+  95.3% { content: "Production-Grade UI Buil"; }
+  95.6% { content: "Production-Grade UI Bui"; }
+  95.9% { content: "Production-Grade UI Bu"; }
+  96.2% { content: "Production-Grade UI B"; }
+  96.5% { content: "Production-Grade UI "; }
+  96.8% { content: "Production-Grade UI"; }
+  97.1% { content: "Production-Grade U"; }
+  97.4% { content: "Production-Grade "; }
+  97.7% { content: "Production-Grade"; }
+  98.0% { content: "Production-Grad"; }
+  98.3% { content: "Production-Gra"; }
+  98.6% { content: "Production-Gr"; }
+  98.9% { content: "Production-G"; }
+  99.2% { content: "Production-"; }
+  99.5% { content: "Production"; }
+  99.8%, 100.0% { content: ""; }
+}
+
+/* ============================================================
+   UPGRADE: TASK 5 — Scroll Progress Bar Styling
+   ============================================================ */
+.scroll-progress-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2px;
+  z-index: 99;
+  background: linear-gradient(to right, var(--accent), #8b5cf6);
+  border-radius: 0;
+  transition: width 0.1s linear;
+}
+
+/* ============================================================
+   UPGRADE: TASK 6 — Project Card Status Badge Styling
+   ============================================================ */
+.badge.badge-live {
+  border-color: #10b981;
+  color: #34d399;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.25);
+  background: rgba(6, 78, 59, 0.4);
+}
+
+.badge.badge-progress {
+  border-color: #f59e0b;
+  color: #fbbf24;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.25);
+  background: rgba(120, 53, 4, 0.4);
+}
+
+.badge.badge-featured {
+  border-color: var(--accent);
+  color: var(--accent-strong);
+  box-shadow: 0 0 14px rgba(94, 234, 212, 0.45);
+  background: rgba(17, 94, 89, 0.4);
+}
+
+
+/* ============================================================
+   UPGRADE: TASK 8 — Experience Timeline Styling
+   ============================================================ */
+#experience .stack-list {
+  position: relative;
+  padding-left: 24px;
+}
+
+#experience .stack-list::before {
+  content: "";
+  position: absolute;
+  left: -18px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+}
+
+#experience .stack-item {
+  position: relative;
+}
+
+#experience .stack-item::before {
+  content: "";
+  position: absolute;
+  left: -21px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px 2px rgba(94, 234, 212, 0.5);
+  z-index: 2;
 }
 

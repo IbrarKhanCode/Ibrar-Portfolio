@@ -85,8 +85,6 @@ export default function Contact() {
               <button type="submit" className="contact-submit">
                 Send Message
               </button>
-
-              <p className="contact-status">This will open your email app with the message pre-filled.</p>
             </form>
           </div>
         </div>
