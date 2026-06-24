@@ -5,7 +5,6 @@ import SectionHeading from "@/components/SectionHeading";
 type Project = {
   title: string;
   logo: string;
-  status: string;
   tagline: string;
   description: string;
   highlights?: string[];
@@ -16,9 +15,38 @@ type Project = {
 
 const projects: Project[] = [
   {
+    title: "Chronos Drift",
+    logo: "/chronos_drift_logo.svg",
+    tagline: "Multiplayer sci-fi roguelike survivor",
+    description:
+      "Chronos Drift is a cross-platform multiplayer sci-fi roguelike survivor built with Flutter and Flame, paired with a self-built Node.js authoritative game server. I designed both the real-time client netcode and the backend simulation, including a unique time-rewind combat mechanic and full match/auth/leaderboard infrastructure.",
+    highlights: [
+      "Built a 4-player real-time multiplayer client/server architecture with Socket.IO, featuring client-side prediction, server reconciliation, and snapshot interpolation for smooth remote-player movement.",
+      "Designed an authoritative Node.js backend running a deterministic 30 Hz fixed-tick loop for movement, shooting, enemy AI, and collisions, paired with a custom spatial-hashing system on both client and server for scalable performance.",
+      "Implemented a server-authoritative Chronos Rewind mechanic — a rolling history buffer letting players revert ~3 seconds of state, enforced with server-side cooldowns.",
+      "Integrated Supabase for anonymous/Google Sign-In auth, player profiles, match history, and leaderboards, with the backend containerized via Docker and deployed on Fly.io.",
+    ],
+    tech: ["Flutter", "Flame", "Node.js", "Socket.IO", "Supabase"],
+    links: [],
+  },
+  {
+    title: "Aura_Mesh",
+    logo: "/aura_mesh_logo.svg",
+    tagline: "Offline BLE mesh messaging app",
+    description:
+      "Aura_Mesh is a decentralized, offline peer-to-peer messaging app for Android that builds a self-organizing Bluetooth Low Energy mesh network, enabling multi-hop chat between nearby devices with no internet, Wi-Fi, or cellular connection required.",
+    highlights: [
+      "Implemented an AODV-inspired multi-hop routing protocol with RouteRequest/RouteReply/RouteError packets, enabling reliable message forwarding across multiple peer hops.",
+      "Built a store-and-forward messaging queue that persists undelivered messages and automatically retries delivery when the destination peer comes back into range.",
+      "Designed a custom BLE packet fragmentation and reassembly protocol to fit payloads within Bluetooth's 20-byte ATT MTU, with sequence flags and reassembly timeouts.",
+      "Architected the app with MVI and Clean Architecture using Hilt DI and Room persistence, with a foreground service keeping the mesh alive in the background and full Android 11–14+ permission handling.",
+    ],
+    tech: ["Kotlin", "Jetpack Compose", "Hilt", "Room", "Coroutines"],
+    links: [],
+  },
+  {
     title: "HalaCareer",
     logo: "/halacareer_logo.png",
-    status: "In Progress",
     tagline: "Track/course learning and company team management platform",
     description:
       "HalaCareer is a feature-rich learning and workforce management application where I implemented complete course-track journeys and company-side employee lifecycle controls with robust, API-driven UX behavior.",
@@ -57,7 +85,6 @@ const projects: Project[] = [
   {
     title: "Seyanti",
     logo: "/seyanti.png",
-    status: "Live",
     tagline: "Three-app on-demand service ecosystem",
     description:
       "Seyanti is a production-grade, three-sided on-demand platform connecting customers, agencies, and providers in one coordinated ecosystem. I worked across role-specific app flows covering discovery, booking, payments, live tracking, and communication to support the full service lifecycle.",
@@ -97,7 +124,6 @@ const projects: Project[] = [
   {
     title: "Genie",
     logo: "/genie.svg",
-    status: "Live",
     tagline: "AI-powered dating app",
     description:
       "Genie is an AI-powered Muslim dating app focused on trust, safety, and smooth real-time interactions. I delivered complex onboarding and communication features while improving backend reliability, data sync, and analytics visibility.",
@@ -132,7 +158,6 @@ const projects: Project[] = [
   {
     title: "Penny Pulse",
     logo: "/penny_pulse_logo.png",
-    status: "Featured",
     tagline: "AI-powered expense tracker",
     description:
       "Penny Pulse is a full-stack personal finance application built with Flutter, FastAPI, and machine learning. It lets users add expenses by text or voice and predicts expense categories plus Need/Want classification with custom NLP models.",
@@ -216,15 +241,6 @@ export default function Projects() {
                   </p>
                 </div>
               </div>
-              <span className={`badge ${
-                project.status === "Live"
-                  ? "badge-live"
-                  : project.status === "In Progress"
-                  ? "badge-progress"
-                  : project.status === "Featured"
-                  ? "badge-featured"
-                  : ""
-              }`}>{project.status}</span>
             </div>
 
             <p>{project.description}</p>

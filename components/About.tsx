@@ -3,13 +3,18 @@ import SectionHeading from "@/components/SectionHeading";
 const coreTech = [
   "Flutter",
   "Dart",
+  "Kotlin",
+  "Jetpack Compose",
+  "Riverpod",
+  "Hilt",
+  "Room",
   "Firebase",
   "REST APIs",
   "WebSockets",
-  "Google Maps",
-  "Payment Integrations",
-  "Push Notifications",
-  "Riverpod",
+  "Node.js",
+  "Socket.IO",
+  "Flame",
+  "Supabase",
   "FastAPI",
   "Machine Learning",
   "NLP Workflows",
@@ -27,16 +32,19 @@ export default function About() {
       />
 
       <p className="reveal" style={{ animationDelay: "0.04s" }}>
-        I am a Flutter developer with professional experience shipping real-world mobile apps across
-        booking, social, real-time, and fintech product domains. I also work across backend and AI
+        I am a mobile, game, and full-stack developer with 2+ years of professional experience
+        building and shipping real-world apps across booking, social, fintech, real-time
+        multiplayer, and offline networking domains. I also work across backend, real-time, and AI
         layers when a project needs a more complete product stack.
       </p>
 
       <p className="reveal" style={{ marginTop: 14, animationDelay: "0.1s" }}>
-        My recent work includes Firebase-powered live features, map-based flows, payment handling,
-        Riverpod state management, FastAPI services, machine learning workflows, and custom NLP logic
-        for expense prediction and classification. I care deeply about writing maintainable code and
-        improving user experience through small interaction details.
+        My recent work spans Firebase-powered live features, map and payment flows, and Riverpod
+        state management on mobile, alongside real-time multiplayer netcode with client-side
+        prediction, server reconciliation, and snapshot interpolation, BLE mesh routing and packet
+        fragmentation, authoritative Flutter + Flame game loops, Node.js match/auth/leaderboard
+        services, and FastAPI machine-learning workflows for expense prediction. I care deeply about
+        writing maintainable code and improving user experience through small interaction details.
       </p>
 
       <p className="reveal" style={{ marginTop: 14, animationDelay: "0.16s" }}>

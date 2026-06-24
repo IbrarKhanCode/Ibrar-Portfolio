@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Aura Mesh logo">
+  <defs>
+    <linearGradient id="am-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#38bdf8"/>
+      <stop offset="1" stop-color="#2dd4bf"/>
+    </linearGradient>
+    <radialGradient id="am-glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#38bdf8" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#2dd4bf" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="#0b1120"/>
+  <circle cx="32" cy="32" r="24" fill="url(#am-glow)"/>
+  <!-- mesh edges -->
+  <g stroke="url(#am-grad)" stroke-width="2.4" stroke-linecap="round" opacity="0.9">
+    <line x1="32" y1="18" x2="46" y2="28"/>
+    <line x1="46" y1="28" x2="40" y2="45"/>
+    <line x1="40" y1="45" x2="24" y2="45"/>
+    <line x1="24" y1="45" x2="18" y2="28"/>
+    <line x1="18" y1="28" x2="32" y2="18"/>
+    <line x1="24" y1="45" x2="46" y2="28"/>
+    <line x1="18" y1="28" x2="40" y2="45"/>
+  </g>
+  <!-- mesh nodes -->
+  <g fill="url(#am-grad)">
+    <circle cx="32" cy="18" r="4.5"/>
+    <circle cx="46" cy="28" r="4.5"/>
+    <circle cx="40" cy="45" r="4.5"/>
+    <circle cx="24" cy="45" r="4.5"/>
+    <circle cx="18" cy="28" r="4.5"/>
+  </g>
+  <!-- center signal pulse -->
+  <circle cx="32" cy="32" r="2.6" fill="#e2e8f0"/>
+  <circle cx="32" cy="32" r="25.5" fill="none" stroke="#1e293b" stroke-width="1.5"/>
+</svg>

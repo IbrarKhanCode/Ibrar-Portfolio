@@ -38,7 +38,7 @@ export default function Experience() {
         index="02"
         title="Experience"
         eyebrow="Where I’ve shipped work"
-        description="A snapshot of the product teams and delivery environments where I’ve contributed as a Flutter developer."
+        description="A snapshot of the product teams and delivery environments where I’ve contributed as a mobile developer over 2+ years."
       />
 
       <ul className="stack-list" aria-label="Work experience entries">

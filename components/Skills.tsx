@@ -2,20 +2,24 @@ import SectionHeading from "@/components/SectionHeading";
 
 const groups = [
   {
-    title: "Mobile Core",
-    items: ["Flutter", "Dart", "Firebase", "REST APIs", "Riverpod"],
+    title: "Mobile & Cross-Platform",
+    items: ["Flutter", "Dart", "Kotlin", "Jetpack Compose", "Riverpod", "Hilt", "Room"],
   },
   {
-    title: "Backend & Data",
-    items: ["FastAPI", "Machine Learning", "NLP", "Docker", "Hugging Face Spaces"],
+    title: "Backend & Real-Time Systems",
+    items: ["Node.js", "Socket.IO", "Supabase", "Firebase", "REST APIs", "FastAPI"],
   },
   {
-    title: "Product Features",
-    items: ["Real-Time Chat", "Maps", "Payments", "Charts", "Localization"],
+    title: "Game & Networking",
+    items: ["Flame", "Multiplayer Netcode", "Client Prediction", "Spatial Hashing", "BLE Mesh", "AODV Routing"],
   },
   {
-    title: "Delivery Workflow",
-    items: ["Git", "Postman", "Debugging", "Performance Tuning", "Team Delivery"],
+    title: "AI, Data & DevOps",
+    items: ["Machine Learning", "NLP Workflows", "Coroutines", "Docker", "Fly.io", "Hugging Face Spaces"],
+  },
+  {
+    title: "Product & Delivery",
+    items: ["Real-Time Chat", "Maps", "Payments", "Charts", "Localization", "Git"],
   },
 ];
 
@@ -26,7 +30,7 @@ export default function Skills() {
         index="04"
         title="Skills"
         eyebrow="Tools and capabilities"
-        description="The mobile, backend, data, and delivery stack I use to build and ship full product experiences."
+        description="The mobile, backend, real-time, game, and delivery stack I use to build and ship full product experiences."
       />
 
       <div

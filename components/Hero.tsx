@@ -48,9 +48,10 @@ export default function Hero() {
       <div className="hero-typewriter"></div>
 
       <p className="hero-summary">
-        I am a Flutter developer focused on accessible, performant, and production-grade apps.
-        I enjoy building thoughtful user interfaces, real-time mobile features, and scalable
-        product experiences with clean architecture.
+        I am a mobile developer focused on accessible, performant, and production-grade
+        apps. With 2+ years of shipping real-world work, I build thoughtful interfaces, real-time
+        multiplayer systems, and scalable product experiences across Flutter, Kotlin, Node.js, and
+        game backends with clean architecture.
       </p>
 
 
