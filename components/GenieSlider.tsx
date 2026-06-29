@@ -11,9 +11,10 @@ type GenieImage = {
 type GenieSliderProps = {
   images: GenieImage[];
   projectName?: string;
+  forceVisible?: boolean;
 };
 
-export default function GenieSlider({ images, projectName = "Project" }: GenieSliderProps) {
+export default function GenieSlider({ images, projectName = "Project", forceVisible = false }: GenieSliderProps) {
   const safeImages = useMemo(
     () => (images.length > 0 ? images : [{ src: "/genie.svg", alt: "Genie app" }]),
     [images]
@@ -77,7 +78,7 @@ export default function GenieSlider({ images, projectName = "Project" }: GenieSl
   return (
     <figure
       ref={sliderRef as React.RefObject<HTMLElement>}
-      className="genie-slider reveal-scale"
+      className={`genie-slider reveal-scale ${forceVisible ? "is-visible" : ""}`}
       aria-label={`${projectName} app screenshots`}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}

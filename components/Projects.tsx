@@ -1,3 +1,6 @@
+"use client";
+
+import { useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
 import GenieSlider from "@/components/GenieSlider";
 import SectionHeading from "@/components/SectionHeading";
@@ -23,7 +26,7 @@ const projects: Project[] = [
     highlights: [
       "Built a 4-player real-time multiplayer client/server architecture with Socket.IO, featuring client-side prediction, server reconciliation, and snapshot interpolation for smooth remote-player movement.",
       "Designed an authoritative Node.js backend running a deterministic 30 Hz fixed-tick loop for movement, shooting, enemy AI, and collisions, paired with a custom spatial-hashing system on both client and server for scalable performance.",
-      "Implemented a server-authoritative Chronos Rewind mechanic — a rolling history buffer letting players revert ~3 seconds of state, enforced with server-side cooldowns.",
+      "Implemented a server-authoritative Chronos Rewind mechanic - a rolling history buffer letting players revert ~3 seconds of state, enforced with server-side cooldowns.",
       "Integrated Supabase for anonymous/Google Sign-In auth, player profiles, match history, and leaderboards, with the backend containerized via Docker and deployed on Fly.io.",
     ],
     tech: ["Flutter", "Flame", "Node.js", "Socket.IO", "Supabase"],
@@ -39,7 +42,7 @@ const projects: Project[] = [
       "Implemented an AODV-inspired multi-hop routing protocol with RouteRequest/RouteReply/RouteError packets, enabling reliable message forwarding across multiple peer hops.",
       "Built a store-and-forward messaging queue that persists undelivered messages and automatically retries delivery when the destination peer comes back into range.",
       "Designed a custom BLE packet fragmentation and reassembly protocol to fit payloads within Bluetooth's 20-byte ATT MTU, with sequence flags and reassembly timeouts.",
-      "Architected the app with MVI and Clean Architecture using Hilt DI and Room persistence, with a foreground service keeping the mesh alive in the background and full Android 11–14+ permission handling.",
+      "Architected the app with MVI and Clean Architecture using Hilt DI and Room persistence, with a foreground service keeping the mesh alive in the background and full Android 11-14+ permission handling.",
     ],
     tech: ["Kotlin", "Jetpack Compose", "Hilt", "Room", "Coroutines"],
     links: [],
@@ -189,108 +192,158 @@ const projects: Project[] = [
 ];
 
 export default function Projects() {
+  const [showAll, setShowAll] = useState(false);
+  const toggleButtonRef = useRef<HTMLButtonElement | null>(null);
+  const collapseAnchorTop = useRef<number | null>(null);
+  const visibleProjects = showAll ? projects : projects.slice(0, 2);
+  const shouldShowToggle = projects.length > 2;
+
+  useLayoutEffect(() => {
+    if (showAll || collapseAnchorTop.current === null) {
+      return;
+    }
+
+    const previousTop = collapseAnchorTop.current;
+    collapseAnchorTop.current = null;
+
+    window.requestAnimationFrame(() => {
+      const currentTop = toggleButtonRef.current?.getBoundingClientRect().top;
+
+      if (typeof currentTop === "number") {
+        window.scrollBy({ top: currentTop - previousTop, behavior: "auto" });
+      }
+    });
+  }, [showAll]);
+
+  const toggleShowAll = () => {
+    if (showAll) {
+      collapseAnchorTop.current = toggleButtonRef.current?.getBoundingClientRect().top ?? null;
+    }
+
+    setShowAll((current) => !current);
+  };
+
   return (
     <section id="projects" className="content-section">
       <SectionHeading
         index="03"
         title="Selected Projects"
         eyebrow="Work that defines my portfolio"
-        description="A few production apps and product systems that show the range of interfaces, flows, and technical problems I’ve worked through."
+        description="A few production apps and product systems that show the range of interfaces, flows, and technical problems I've worked through."
       />
 
-      <ul className="stack-list" aria-label="Project list">
-        {projects.map((project, index) => {
+      <ul className="stack-list" aria-label="Project list" id="projects-list">
+        {visibleProjects.map((project, index) => {
           const isPennyPulse = project.title === "Penny Pulse";
 
           return (
-          <li
-            key={project.title}
-            className="project-shell reveal"
-            style={{ animationDelay: `${0.06 + index * 0.1}s` }}
-          >
-            <div className="card-surface stack-item project-summary">
-              <div className="meta-row" style={{ marginBottom: 16 }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                <div
-                  style={{
-                    width: 54,
-                    height: 54,
-                    borderRadius: isPennyPulse ? 999 : 12,
-                    border: "1px solid var(--border)",
-                    background: "#f8fafc",
-                    position: "relative",
-                    overflow: "hidden",
-                    flexShrink: 0,
-                  }}
-                >
-                  <Image
-                    src={project.logo}
-                    alt={`${project.title} logo`}
-                    fill
-                    sizes="54px"
-                    style={{
-                      objectFit: isPennyPulse ? "cover" : "contain",
-                      padding: isPennyPulse ? 0 : 7,
-                    }}
+            <li
+              key={project.title}
+              className={`project-shell reveal ${showAll && index >= 2 ? "is-visible" : ""}`}
+              style={{ animationDelay: `${0.06 + index * 0.1}s` }}
+            >
+              <div className="card-surface stack-item project-summary">
+                <div className="meta-row" style={{ marginBottom: 16 }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                    <div
+                      style={{
+                        width: 54,
+                        height: 54,
+                        borderRadius: isPennyPulse ? 999 : 12,
+                        border: "1px solid var(--border)",
+                        background: "#f8fafc",
+                        position: "relative",
+                        overflow: "hidden",
+                        flexShrink: 0,
+                      }}
+                    >
+                      <Image
+                        src={project.logo}
+                        alt={`${project.title} logo`}
+                        fill
+                        sizes="54px"
+                        style={{
+                          objectFit: isPennyPulse ? "cover" : "contain",
+                          padding: isPennyPulse ? 0 : 7,
+                        }}
+                      />
+                    </div>
+                    <div>
+                      <h3 style={{ fontSize: 19 }}>{project.title}</h3>
+                      <p className="mono" style={{ fontSize: 12, color: "var(--text-dim)" }}>
+                        {project.tagline}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <p>{project.description}</p>
+
+                {project.highlights && project.highlights.length > 0 ? (
+                  <ul
+                    aria-label={`${project.title} key points`}
+                    style={{ marginTop: 12, display: "grid", gap: 6, paddingLeft: 0, listStyle: "none" }}
+                  >
+                    {project.highlights.map((point) => (
+                      <li key={`${project.title}-${point}`} style={{ color: "var(--text-body)", lineHeight: 1.6 }}>
+                        ▹ {point}
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
+
+                <div style={{ marginTop: 14, display: "flex", flexWrap: "wrap", gap: 8 }}>
+                  {project.tech.map((tech) => (
+                    <span key={tech} className="badge">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                <div style={{ marginTop: 16, display: "flex", flexWrap: "wrap", gap: 12 }}>
+                  {project.links.map((link) => (
+                    <a
+                      key={`${project.title}-${link.label}`}
+                      href={link.href}
+                      target={link.href.startsWith("http") ? "_blank" : undefined}
+                      rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                      className="text-link mono"
+                      style={{ fontSize: 12 }}
+                    >
+                      {link.label} ↗
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              {project.screenshots && project.screenshots.length > 0 ? (
+                <div className="project-screenshots">
+                  <GenieSlider
+                    images={project.screenshots}
+                    projectName={project.title}
+                    forceVisible={showAll && index >= 2}
                   />
                 </div>
-                <div>
-                  <h3 style={{ fontSize: 19 }}>{project.title}</h3>
-                  <p className="mono" style={{ fontSize: 12, color: "var(--text-dim)" }}>
-                    {project.tagline}
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <p>{project.description}</p>
-
-            {project.highlights && project.highlights.length > 0 ? (
-              <ul
-                aria-label={`${project.title} key points`}
-                style={{ marginTop: 12, display: "grid", gap: 6, paddingLeft: 0, listStyle: "none" }}
-              >
-                {project.highlights.map((point) => (
-                  <li key={`${project.title}-${point}`} style={{ color: "var(--text-body)", lineHeight: 1.6 }}>
-                    ▹ {point}
-                  </li>
-                ))}
-              </ul>
-            ) : null}
-
-            <div style={{ marginTop: 14, display: "flex", flexWrap: "wrap", gap: 8 }}>
-              {project.tech.map((tech) => (
-                <span key={tech} className="badge">
-                  {tech}
-                </span>
-              ))}
-            </div>
-
-            <div style={{ marginTop: 16, display: "flex", flexWrap: "wrap", gap: 12 }}>
-              {project.links.map((link) => (
-                <a
-                  key={`${project.title}-${link.label}`}
-                  href={link.href}
-                  target={link.href.startsWith("http") ? "_blank" : undefined}
-                  rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                  className="text-link mono"
-                  style={{ fontSize: 12 }}
-                >
-                  {link.label} ↗
-                </a>
-              ))}
-            </div>
-            </div>
-
-            {project.screenshots && project.screenshots.length > 0 ? (
-              <div className="project-screenshots">
-                <GenieSlider images={project.screenshots} projectName={project.title} />
-              </div>
-            ) : null}
-          </li>
+              ) : null}
+            </li>
           );
         })}
       </ul>
+
+      {shouldShowToggle ? (
+        <div style={{ marginTop: 18, display: "flex" }}>
+          <button
+            ref={toggleButtonRef}
+            type="button"
+            className="btn-accent"
+            onClick={toggleShowAll}
+            aria-expanded={showAll}
+            aria-controls="projects-list"
+          >
+            {showAll ? "Show less projects" : "See more projects"}
+          </button>
+        </div>
+      ) : null}
     </section>
   );
 }
