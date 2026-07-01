@@ -5,6 +5,21 @@ import SectionHeading from "@/components/SectionHeading";
 
 const experiences = [
   {
+    period: "2026 – Present",
+    location: "Remote",
+    role: "Open Source Contributor",
+    company: "API Dash",
+    companyUrl: "https://apidash.dev",
+    summary:
+      "Contributing to API Dash, a Flutter-based open-source API client and an official Google Summer of Code (GSoC) organization, focusing on Android platform reliability and contributor workflow.",
+    points: [
+      "Root-caused an Android MP3 preview failure traced to just_audio localhost cleartext traffic restrictions and documented the recommended fix for maintainers.",
+      "Investigated a native plugin loading crash on Android startup and collaborated with the team on the appropriate resolution path.",
+      "Submitted pull requests following open-source best practices — feature branches, code reviews, and maintainer alignment via GitHub and Discord.",
+    ],
+    tech: ["Flutter", "Dart", "Android", "Git", "Open Source"],
+  },
+  {
     period: "Jan 2026 - Present",
     location: "Islamabad",
     role: "Flutter Developer",
