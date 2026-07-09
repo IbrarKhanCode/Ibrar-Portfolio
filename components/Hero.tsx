@@ -45,18 +45,29 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="hero-typewriter"></div>
-
-      <p className="hero-summary">
-        I am a mobile developer focused on accessible, performant, and production-grade
-        apps. With 2+ years of shipping real-world work, I build thoughtful interfaces, real-time
-        multiplayer systems, and scalable product experiences across Flutter, Kotlin, Node.js, and
-        game backends with clean architecture.
+      <p className="hero-subtitle">
+        Flutter Developer building real-time, production-grade mobile apps.
       </p>
 
+      <p className="hero-summary">
+        I build performant Flutter apps with real-time features, clean architecture, and
+        production-ready delivery. Alongside mobile, I build the backend and systems layer
+        when a project needs it — from Node.js multiplayer game servers to FastAPI ML services.
+      </p>
 
-
-      {/* hero jump links removed */}
+      <div className="hero-actions">
+        <a
+          href="/resume/Muhammad%20Ibrar%20Flutter.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn-accent"
+        >
+          View Resume
+        </a>
+        <a href="#contact" className="btn-outline">
+          Get In Touch
+        </a>
+      </div>
 
 
     </section>

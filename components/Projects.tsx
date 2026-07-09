@@ -4,6 +4,12 @@ import { useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
 import GenieSlider from "@/components/GenieSlider";
 import SectionHeading from "@/components/SectionHeading";
+import ProjectStatRow from "@/components/ProjectStatRow";
+
+type ProjectStat = {
+  value: string;
+  label: string;
+};
 
 type Project = {
   title: string;
@@ -11,6 +17,7 @@ type Project = {
   tagline: string;
   description: string;
   highlights?: string[];
+  stats?: ProjectStat[];
   tech: string[];
   links: { label: string; href: string }[];
   screenshots?: { src: string; alt: string }[];
@@ -29,6 +36,11 @@ const projects: Project[] = [
       "Implemented a server-authoritative Chronos Rewind mechanic - a rolling history buffer letting players revert ~3 seconds of state, enforced with server-side cooldowns.",
       "Integrated Supabase for anonymous/Google Sign-In auth, player profiles, match history, and leaderboards, with the backend containerized via Docker and deployed on Fly.io.",
     ],
+    stats: [
+      { value: "30Hz", label: "Server Tick Rate" },
+      { value: "4-Player", label: "Real-Time Multiplayer" },
+      { value: "~3s", label: "Rewind Buffer Window" },
+    ],
     tech: ["Flutter", "Flame", "Node.js", "Socket.IO", "Supabase"],
     links: [],
   },
@@ -43,6 +55,11 @@ const projects: Project[] = [
       "Built a store-and-forward messaging queue that persists undelivered messages and automatically retries delivery when the destination peer comes back into range.",
       "Designed a custom BLE packet fragmentation and reassembly protocol to fit payloads within Bluetooth's 20-byte ATT MTU, with sequence flags and reassembly timeouts.",
       "Architected the app with MVI and Clean Architecture using Hilt DI and Room persistence, with a foreground service keeping the mesh alive in the background and full Android 11-14+ permission handling.",
+    ],
+    stats: [
+      { value: "20-byte", label: "BLE ATT MTU" },
+      { value: "Multi-Hop", label: "AODV Routing" },
+      { value: "Android 11-14+", label: "Compatibility" },
     ],
     tech: ["Kotlin", "Jetpack Compose", "Hilt", "Room", "Coroutines"],
     links: [],
@@ -291,6 +308,8 @@ export default function Projects() {
                     ))}
                   </ul>
                 ) : null}
+
+                {project.stats && project.stats.length > 0 ? <ProjectStatRow stats={project.stats} /> : null}
 
                 <div style={{ marginTop: 14, display: "flex", flexWrap: "wrap", gap: 8 }}>
                   {project.tech.map((tech) => (

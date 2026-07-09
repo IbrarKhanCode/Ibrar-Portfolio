@@ -31,8 +31,9 @@ export default function Contact() {
 
       <div className="contact-shell">
         <p className="contact-summary">
-          I am currently open to new Flutter and mobile product opportunities. If you have a role,
-          project, or collaboration in mind, drop a message below and I will get back to you.
+          I&apos;m currently open to Flutter developer roles and freelance projects — remote-first.
+          Send a message with your project or role details below, and I&apos;ll respond within 24
+          hours.
         </p>
 
         <div className="contact-panel" style={{ marginTop: 18 }}>

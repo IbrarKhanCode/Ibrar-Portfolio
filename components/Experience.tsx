@@ -199,6 +199,45 @@ export default function Experience() {
         ))}
       </ul>
 
+      <div className="credibility-card reveal" style={{ animationDelay: "0.22s" }}>
+        <div className="credibility-card-header">
+          <div className="credibility-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="6" y1="3" x2="6" y2="15" />
+              <circle cx="18" cy="6" r="3" />
+              <circle cx="6" cy="18" r="3" />
+              <path d="M18 9a9 9 0 0 1-9 9" />
+            </svg>
+          </div>
+          <div>
+            <h3 className="credibility-title">Google Summer of Code Organization Contributor</h3>
+            <p className="mono credibility-subtext">
+              Contributing to API Dash — an official GSoC organization and open-source Flutter API client.
+            </p>
+          </div>
+        </div>
+        <div className="credibility-links">
+          <a
+            href="https://apidash.dev"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-link mono"
+            style={{ fontSize: 12 }}
+          >
+            apidash.dev ↗
+          </a>
+          <a
+            href="https://github.com/foss42/apidash"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-link mono"
+            style={{ fontSize: 12 }}
+          >
+            GitHub ↗
+          </a>
+        </div>
+      </div>
+
       {shouldShowToggle ? (
         <div style={{ marginTop: 18, display: "flex" }}>
           <button

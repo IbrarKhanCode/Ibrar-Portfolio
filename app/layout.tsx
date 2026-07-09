@@ -17,7 +17,7 @@ const jetBrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Muhammad Ibrar | Flutter Developer",
   description:
-    "Flutter developer with 1.5+ years of experience building scalable, real-time mobile apps with Firebase and REST APIs. Based in Islamabad, Pakistan.",
+    "Flutter Developer building real-time, production-grade mobile apps. 2+ years shipping Flutter apps with clean architecture, real-time features, and backend systems. Based in Islamabad, Pakistan.",
   keywords: [
     "Muhammad Ibrar",
     "Flutter Developer",
@@ -37,14 +37,14 @@ export const metadata: Metadata = {
     locale: "en_US",
     title: "Muhammad Ibrar | Flutter Developer",
     description:
-      "Flutter developer with 1.5+ years of experience building scalable, real-time mobile apps with Firebase and REST APIs.",
+      "Flutter Developer building real-time, production-grade mobile apps. 2+ years shipping Flutter apps with clean architecture, real-time features, and backend systems.",
     siteName: "Muhammad Ibrar Portfolio",
   },
   twitter: {
     card: "summary_large_image",
     title: "Muhammad Ibrar | Flutter Developer",
     description:
-      "Flutter developer with 1.5+ years of experience building scalable, real-time mobile apps with Firebase and REST APIs.",
+      "Flutter Developer building real-time, production-grade mobile apps. 2+ years shipping Flutter apps with clean architecture, real-time features, and backend systems.",
   },
   robots: {
     index: true,

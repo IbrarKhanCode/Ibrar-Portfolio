@@ -785,7 +785,7 @@ b {
 }
 
 .hero-title {
-  font-size: clamp(32px, 5.2vw, 56px);
+  font-size: clamp(28px, 3.6vw, 44px);
   line-height: 1;
   margin-bottom: 12px;
   background: linear-gradient(135deg, #e6eef8 0%, #9fb4d0 45%, #5eead4 100%);
@@ -796,8 +796,8 @@ b {
 
 .hero-subtitle {
   color: var(--text-body);
-  font-size: clamp(24px, 4.2vw, 48px);
-  line-height: 1.05;
+  font-size: clamp(20px, 2.8vw, 30px);
+  line-height: 1.1;
   margin-bottom: 18px;
 }
 
@@ -808,7 +808,7 @@ b {
 }
 
 .hero-actions {
-  display: flex;
+  display: none;
   flex-wrap: wrap;
   gap: 12px;
   margin-top: 18px;
@@ -1337,6 +1337,7 @@ b {
   }
 
   .hero-actions {
+    display: flex;
     justify-content: flex-start;
   }
 }
@@ -1755,5 +1756,218 @@ b {
   background: var(--accent);
   box-shadow: 0 0 8px 2px rgba(94, 234, 212, 0.5);
   z-index: 2;
+}
+
+/* ============================================================
+   HERO CTA — outline button variant
+   ============================================================ */
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  color: var(--text-heading);
+  background: transparent;
+  font-family: var(--font-mono), var(--font-mono-fallback);
+  font-size: 13px;
+  padding: 12px 18px;
+  transition: transform 0.22s ease, border-color 0.22s ease, color 0.22s ease, background-color 0.22s ease;
+}
+
+.btn-outline:hover {
+  transform: translateY(-2px);
+  border-color: rgba(94, 234, 212, 0.55);
+  color: var(--accent);
+  background: rgba(94, 234, 212, 0.06);
+}
+
+/* ============================================================
+   PROJECT STAT ROW
+   ============================================================ */
+.project-stat-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.project-stat {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(94, 234, 212, 0.22);
+  background: rgba(7, 14, 28, 0.75);
+  padding: 7px 12px;
+  font-family: var(--font-mono), var(--font-mono-fallback);
+  line-height: 1.2;
+}
+
+.project-stat-value {
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.project-stat-label {
+  color: var(--text-dim);
+  font-size: 11px;
+}
+
+/* ============================================================
+   OPEN SOURCE & RECOGNITION CARD
+   ============================================================ */
+.credibility-card {
+  margin-top: 22px;
+  border-radius: 14px;
+  border: 1px solid rgba(94, 234, 212, 0.28);
+  background:
+    radial-gradient(120% 120% at 0% 0%, rgba(94, 234, 212, 0.12), transparent 55%),
+    linear-gradient(145deg, rgba(8, 18, 38, 0.92), rgba(14, 32, 64, 0.9));
+  box-shadow: 0 18px 44px -30px rgba(2, 6, 23, 0.9), 0 0 0 1px rgba(94, 234, 212, 0.06);
+  padding: 20px;
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.28s ease,
+              box-shadow 0.28s ease;
+}
+
+.credibility-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(94, 234, 212, 0.45);
+  box-shadow: 0 22px 50px -28px rgba(2, 6, 23, 0.92), 0 0 18px rgba(94, 234, 212, 0.12);
+}
+
+.credibility-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.credibility-icon {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  background: rgba(94, 234, 212, 0.1);
+  border: 1px solid rgba(94, 234, 212, 0.18);
+}
+
+.credibility-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.credibility-title {
+  font-size: 17px;
+  line-height: 1.25;
+  margin-bottom: 6px;
+}
+
+.credibility-subtext {
+  color: var(--text-body);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.credibility-links {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/* ============================================================
+   RESPONSIVENESS AUDIT FIXES
+   ============================================================ */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: clamp(30px, 7.8vw, 42px);
+  }
+
+  .hero-subtitle {
+    font-size: clamp(20px, 5.2vw, 28px);
+  }
+
+  .project-stat-row {
+    gap: 8px;
+  }
+
+  .project-stat {
+    padding: 6px 10px;
+  }
+
+  .project-stat-value {
+    font-size: 12px;
+  }
+
+  .project-stat-label {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 420px) {
+  .btn-outline {
+    font-size: 12px;
+    border-radius: 9px;
+    padding: 10px 14px;
+  }
+
+  .hero-actions {
+    gap: 10px;
+  }
+
+  .hero-actions .btn-accent,
+  .hero-actions .btn-outline {
+    width: 100%;
+    max-width: 260px;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 390px) {
+  .hero-title {
+    font-size: 28px;
+  }
+
+  .hero-subtitle {
+    font-size: 19px;
+  }
+
+  .hero-portrait-mobile {
+    width: 92px;
+    height: 92px;
+  }
+}
+
+@media (max-width: 360px) {
+  .hero-title {
+    font-size: 26px;
+  }
+
+  .hero-subtitle {
+    font-size: 18px;
+  }
+
+  .hero-summary {
+    font-size: 14px;
+  }
+
+  .project-stat {
+    flex: 1 1 calc(50% - 4px);
+    justify-content: center;
+  }
+}
+
+/* Contact form accessibility: ensure 44px minimum tap targets */
+.input-field,
+.contact-submit,
+.btn-accent,
+.btn-outline {
+  min-height: 44px;
 }
 
