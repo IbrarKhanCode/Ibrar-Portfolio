@@ -4,6 +4,7 @@ import About from "@/components/About";
 import Experience from "@/components/Experience";
 import Projects from "@/components/Projects";
 import Skills from "@/components/Skills";
+import GitHubActivity from "@/components/GitHubActivity";
 import Contact from "@/components/Contact";
 import SideRails from "@/components/SideRails";
 import CursorMoodOverlay from "@/components/CursorMoodOverlay";
@@ -25,6 +26,7 @@ export default function Home() {
           <Experience />
           <Projects />
           <Skills />
+          <GitHubActivity />
           <Contact />
         </section>
       </main>

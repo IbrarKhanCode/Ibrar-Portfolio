@@ -2,7 +2,7 @@ export default function SideRails() {
   return (
     <div className="bottom-socials-left" aria-label="Social links">
       <a
-        href="/resume/Muhammad%20Ibrar%20Flutter.pdf"
+        href="/CV/Muhammad%20Ibrar%20Flutter.pdf"
         target="_blank"
         rel="noopener noreferrer"
         className="social-btn"

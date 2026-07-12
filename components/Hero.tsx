@@ -57,7 +57,7 @@ export default function Hero() {
 
       <div className="hero-actions">
         <a
-          href="/resume/Muhammad%20Ibrar%20Flutter.pdf"
+          href="/CV/Muhammad%20Ibrar%20Flutter.pdf"
           target="_blank"
           rel="noopener noreferrer"
           className="btn-accent"

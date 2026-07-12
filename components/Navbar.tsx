@@ -40,6 +40,7 @@ export default function Navbar() {
     { label: "Experience", href: "#experience" },
     { label: "Projects", href: "#projects" },
     { label: "Skills", href: "#skills" },
+    { label: "GitHub", href: "#github" },
     { label: "Contact", href: "#contact" },
   ];
 
@@ -66,7 +67,7 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
-          <a href="/resume/Muhammad%20Ibrar%20Flutter.pdf" target="_blank" rel="noopener noreferrer" className="btn-accent">
+          <a href="/CV/Muhammad%20Ibrar%20Flutter.pdf" target="_blank" rel="noopener noreferrer" className="btn-accent">
             Resume
           </a>
         </div>
@@ -88,7 +89,7 @@ export default function Navbar() {
           </a>
         ))}
         <a
-          href="/resume/Muhammad%20Ibrar%20Flutter.pdf"
+          href="/CV/Muhammad%20Ibrar%20Flutter.pdf"
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => setMenuOpen(false)}

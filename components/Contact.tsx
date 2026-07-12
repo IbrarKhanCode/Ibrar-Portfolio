@@ -23,7 +23,7 @@ export default function Contact() {
       style={{ animationDelay: "0.12s", marginBottom: 54 }}
     >
       <SectionHeading
-        index="05"
+        index="06"
         title="Contact"
         eyebrow="Let’s talk"
         description="Open to Flutter and mobile product opportunities, collaborations, and focused freelance work."
