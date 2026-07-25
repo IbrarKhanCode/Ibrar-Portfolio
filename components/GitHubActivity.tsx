@@ -115,25 +115,23 @@ export default function GitHubActivity() {
               }}
               aria-hidden={!loaded}
             >
-              <div className="github-calendar-scroll">
-                <GitHubCalendar
-                  username={GITHUB_USERNAME}
-                  year="last"
-                  colorScheme="dark"
-                  theme={calendarTheme}
-                  blockSize={12}
-                  blockMargin={3}
-                  blockRadius={3}
-                  fontSize={12}
-                  showWeekdayLabels
-                  labels={{
-                    totalCount: "{{count}} contributions in the last year",
-                    legend: { less: "Less", more: "More" },
-                  }}
-                  transformData={handleTransformData}
-                  errorMessage="Unable to load GitHub contributions. Please try again later or view my profile directly."
-                />
-              </div>
+              <GitHubCalendar
+                username={GITHUB_USERNAME}
+                year="last"
+                colorScheme="dark"
+                theme={calendarTheme}
+                blockSize={12}
+                blockMargin={3}
+                blockRadius={3}
+                fontSize={12}
+                showWeekdayLabels
+                labels={{
+                  totalCount: "{{count}} contributions in the last year",
+                  legend: { less: "Less", more: "More" },
+                }}
+                transformData={handleTransformData}
+                errorMessage="Unable to load GitHub contributions. Please try again later or view my profile directly."
+              />
             </div>
           </>
         )}

@@ -1983,7 +1983,14 @@ b {
 }
 
 .github-calendar-live .react-activity-calendar {
-  width: 100%;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.github-calendar-live .react-activity-calendar__scroll-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 4px;
 }
 
 .github-calendar-live .react-activity-calendar figure {
@@ -2012,18 +2019,6 @@ b {
 .github-calendar-live .react-activity-calendar svg text {
   fill: var(--text-dim);
   font-size: 12px;
-}
-
-.github-calendar-scroll {
-  width: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-  padding-bottom: 4px;
-}
-
-.github-calendar-scroll .react-activity-calendar {
-  min-width: 750px;
 }
 
 .github-profile-link-wrap {
@@ -2160,9 +2155,11 @@ b {
 }
 
 @media (max-width: 640px) {
-  .github-calendar-scroll {
+  .github-calendar-live .react-activity-calendar__scroll-container {
     margin: 0 -14px;
     padding: 0 14px 4px;
+    width: calc(100% + 28px);
+    max-width: calc(100% + 28px);
   }
 }
 
