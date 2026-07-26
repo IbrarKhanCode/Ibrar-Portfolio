@@ -46,7 +46,7 @@ const projects: Project[] = [
   },
   {
     title: "Aura_Mesh",
-    logo: "/aura_mesh_logo.svg",
+    logo: "/aura_mesh_logo.png",
     tagline: "Offline BLE mesh messaging app",
     description:
       "Aura_Mesh is a decentralized, offline peer-to-peer messaging app for Android that builds a self-organizing Bluetooth Low Energy mesh network, enabling multi-hop chat between nearby devices with no internet, Wi-Fi, or cellular connection required.",
@@ -62,6 +62,17 @@ const projects: Project[] = [
       { value: "Android 11-14+", label: "Compatibility" },
     ],
     tech: ["Kotlin", "Jetpack Compose", "Hilt", "Room", "Coroutines"],
+    screenshots: [
+      { src: "/aura_mesh/1.jpeg", alt: "Aura_Mesh screen 1" },
+      { src: "/aura_mesh/2.jpeg", alt: "Aura_Mesh screen 2" },
+      { src: "/aura_mesh/3.jpeg", alt: "Aura_Mesh screen 3" },
+      { src: "/aura_mesh/4.jpeg", alt: "Aura_Mesh screen 4" },
+      { src: "/aura_mesh/5.jpeg", alt: "Aura_Mesh screen 5" },
+      { src: "/aura_mesh/6.jpeg", alt: "Aura_Mesh screen 6" },
+      { src: "/aura_mesh/7.jpeg", alt: "Aura_Mesh screen 7" },
+      { src: "/aura_mesh/8.jpeg", alt: "Aura_Mesh screen 8" },
+      { src: "/aura_mesh/9.jpeg", alt: "Aura_Mesh screen 9" },
+    ],
     links: [],
   },
   {
@@ -208,12 +219,27 @@ const projects: Project[] = [
   },
 ];
 
+const DESCRIPTION_CLAMP_THRESHOLD = 160;
+
 export default function Projects() {
   const [showAll, setShowAll] = useState(false);
+  const [expandedDescriptions, setExpandedDescriptions] = useState<Set<string>>(new Set());
   const toggleButtonRef = useRef<HTMLButtonElement | null>(null);
   const collapseAnchorTop = useRef<number | null>(null);
   const visibleProjects = showAll ? projects : projects.slice(0, 2);
   const shouldShowToggle = projects.length > 2;
+
+  const toggleDescription = (title: string) => {
+    setExpandedDescriptions((current) => {
+      const next = new Set(current);
+      if (next.has(title)) {
+        next.delete(title);
+      } else {
+        next.add(title);
+      }
+      return next;
+    });
+  };
 
   useLayoutEffect(() => {
     if (showAll || collapseAnchorTop.current === null) {
@@ -252,6 +278,8 @@ export default function Projects() {
       <ul className="stack-list" aria-label="Project list" id="projects-list">
         {visibleProjects.map((project, index) => {
           const isPennyPulse = project.title === "Penny Pulse";
+          const isDescriptionExpanded = expandedDescriptions.has(project.title);
+          const needsClamp = project.description.length > DESCRIPTION_CLAMP_THRESHOLD;
 
           return (
             <li
@@ -294,45 +322,62 @@ export default function Projects() {
                   </div>
                 </div>
 
-                <p>{project.description}</p>
+                <p className={needsClamp && !isDescriptionExpanded ? "project-description-clamped" : undefined}>
+                  {project.description}
+                </p>
 
-                {project.highlights && project.highlights.length > 0 ? (
-                  <ul
-                    aria-label={`${project.title} key points`}
-                    style={{ marginTop: 12, display: "grid", gap: 6, paddingLeft: 0, listStyle: "none" }}
-                  >
-                    {project.highlights.map((point) => (
-                      <li key={`${project.title}-${point}`} style={{ color: "var(--text-body)", lineHeight: 1.6 }}>
-                        ▹ {point}
-                      </li>
-                    ))}
-                  </ul>
+                {!needsClamp || isDescriptionExpanded ? (
+                  <>
+                    {project.highlights && project.highlights.length > 0 ? (
+                      <ul
+                        aria-label={`${project.title} key points`}
+                        style={{ marginTop: 12, display: "grid", gap: 6, paddingLeft: 0, listStyle: "none" }}
+                      >
+                        {project.highlights.map((point) => (
+                          <li key={`${project.title}-${point}`} style={{ color: "var(--text-body)", lineHeight: 1.6 }}>
+                            ▹ {point}
+                          </li>
+                        ))}
+                      </ul>
+                    ) : null}
+
+                    {project.stats && project.stats.length > 0 ? <ProjectStatRow stats={project.stats} /> : null}
+
+                    <div style={{ marginTop: 14, display: "flex", flexWrap: "wrap", gap: 8 }}>
+                      {project.tech.map((tech) => (
+                        <span key={tech} className="badge">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+
+                    <div style={{ marginTop: 16, display: "flex", flexWrap: "wrap", gap: 12 }}>
+                      {project.links.map((link) => (
+                        <a
+                          key={`${project.title}-${link.label}`}
+                          href={link.href}
+                          target={link.href.startsWith("http") ? "_blank" : undefined}
+                          rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                          className="text-link mono"
+                          style={{ fontSize: 12 }}
+                        >
+                          {link.label} ↗
+                        </a>
+                      ))}
+                    </div>
+                  </>
                 ) : null}
 
-                {project.stats && project.stats.length > 0 ? <ProjectStatRow stats={project.stats} /> : null}
-
-                <div style={{ marginTop: 14, display: "flex", flexWrap: "wrap", gap: 8 }}>
-                  {project.tech.map((tech) => (
-                    <span key={tech} className="badge">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
-                <div style={{ marginTop: 16, display: "flex", flexWrap: "wrap", gap: 12 }}>
-                  {project.links.map((link) => (
-                    <a
-                      key={`${project.title}-${link.label}`}
-                      href={link.href}
-                      target={link.href.startsWith("http") ? "_blank" : undefined}
-                      rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                      className="text-link mono"
-                      style={{ fontSize: 12 }}
-                    >
-                      {link.label} ↗
-                    </a>
-                  ))}
-                </div>
+                {needsClamp ? (
+                  <button
+                    type="button"
+                    className="text-link mono project-desc-toggle"
+                    onClick={() => toggleDescription(project.title)}
+                    aria-expanded={isDescriptionExpanded}
+                  >
+                    {isDescriptionExpanded ? "See less" : "See more"}
+                  </button>
+                ) : null}
               </div>
 
               {project.screenshots && project.screenshots.length > 0 ? (
