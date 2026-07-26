@@ -77,7 +77,7 @@ export default function RootLayout({
       </head>
       <body className={`${spaceGrotesk.variable} ${jetBrainsMono.variable}`}>
         <SpaceBackground />
-        {children}
+        <div className="page-content-layer">{children}</div>
       </body>
     </html>
   );

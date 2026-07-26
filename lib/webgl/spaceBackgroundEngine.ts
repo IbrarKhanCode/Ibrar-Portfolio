@@ -17,10 +17,11 @@ void main() {
 // GLSL source is kept comment-free and ASCII-only: some shader compilers
 // mishandle multi-byte characters even inside "//" comments, which silently
 // corrupted rendering here without throwing a JS-visible error. Structure:
-// hash21/valueNoise/fbm build layered cloud noise; main() blends two drifting
-// nebula tints over a near-black base, composites a sparse twinkling starfield
-// on top via max() (so stars never get dimmed by cloud density), then applies
-// a radial vignette.
+// hash21/valueNoise/fbm build layered cloud noise; main() paints a near-black
+// base, adds two faint drifting nebula tints masked to fade in only toward
+// the edges/corners (so the readable center stays clean), then composites a
+// dense, uniformly-sized, independently-twinkling starfield on top via
+// max() (so stars never get dimmed by cloud density).
 const FRAGMENT_SRC = `
 precision highp float;
 uniform vec2 u_resolution;
@@ -62,43 +63,43 @@ void main() {
   p.x *= aspect;
   p += 0.5;
 
-  vec3 color = vec3(0.017, 0.025, 0.052);
-
-  vec2 driftA = p * 2.1 + vec2(u_time * 0.014, -u_time * 0.007);
-  float nA = fbm(driftA);
-  vec3 cyan = vec3(0.08, 0.5, 0.52) * smoothstep(0.38, 0.86, nA);
-
-  vec2 driftB = p * 2.6 + vec2(-u_time * 0.009, u_time * 0.012) + 47.0;
-  float nB = fbm(driftB);
-  vec3 purple = vec3(0.33, 0.13, 0.56) * smoothstep(0.42, 0.9, nB);
-
-  color += cyan * 0.55 + purple * 0.48;
-
-  vec2 fragPx = gl_FragCoord.xy;
-  float cell = 27.0;
-  vec2 gridId = floor(fragPx / cell);
-  vec2 gridUv = fract(fragPx / cell);
-
-  float starChance = step(0.964, hash21(gridId));
-  vec2 starPos = vec2(hash21(gridId + 11.13), hash21(gridId + 91.71));
-  float dist = length(gridUv - starPos);
-  float starSize = mix(0.05, 0.16, hash21(gridId + 3.31));
-
-  float speed = mix(0.6, 2.4, hash21(gridId + 5.53));
-  float phase = hash21(gridId + 7.77) * 6.2832;
-  float twinkle = 0.5 + 0.5 * sin(u_time * speed + phase);
-  float brightness = mix(0.3, 1.0, twinkle);
-
-  float starMask = smoothstep(starSize, 0.0, dist) * starChance * brightness;
-  vec3 starTint = mix(vec3(0.75, 0.9, 1.0), vec3(1.0, 1.0, 1.0), hash21(gridId + 2.21));
-  vec3 stars = starTint * starMask;
-
-  color = max(color, stars);
+  vec3 color = vec3(0.02, 0.031, 0.086);
 
   vec2 vUv = uv - 0.5;
   vUv.x *= aspect;
-  float vig = smoothstep(0.35, 1.05, length(vUv));
-  color *= (1.0 - vig * 0.62);
+  float edgeMask = mix(0.35, 1.0, smoothstep(0.05, 0.85, length(vUv)));
+
+  vec2 driftA = p * 1.5 + vec2(u_time * 0.012, -u_time * 0.006);
+  float nA = fbm(driftA);
+  vec3 cyan = vec3(0.369, 0.918, 0.831) * nA;
+
+  vec2 driftB = p * 1.8 + vec2(-u_time * 0.008, u_time * 0.01) + 47.0;
+  float nB = fbm(driftB);
+  vec3 purple = vec3(0.545, 0.361, 0.965) * nB;
+
+  color += (cyan * 0.15 + purple * 0.13) * edgeMask;
+
+  vec2 fragPx = gl_FragCoord.xy;
+  float cell = 14.0;
+  vec2 gridId = floor(fragPx / cell);
+  vec2 gridUv = fract(fragPx / cell);
+
+  float starChance = step(0.85, hash21(gridId));
+  vec2 starPos = vec2(hash21(gridId + 11.13), hash21(gridId + 91.71));
+  float dist = length(gridUv - starPos);
+  float starSize = 0.13;
+
+  float speed = mix(1.2, 4.6, hash21(gridId + 5.53));
+  float phase = hash21(gridId + 7.77) * 6.2832;
+  float twinkle = 0.5 + 0.5 * sin(u_time * speed + phase);
+  float brightness = mix(0.28, 0.92, twinkle);
+
+  float core = smoothstep(starSize, 0.0, dist) * starChance * brightness;
+  float glow = smoothstep(starSize * 1.8, 0.0, dist) * starChance * brightness * 0.2;
+  vec3 starTint = mix(vec3(0.5, 0.78, 0.98), vec3(0.78, 0.93, 1.0), hash21(gridId + 2.21));
+  vec3 stars = starTint * (core + glow);
+
+  color = max(color, stars);
 
   gl_FragColor = vec4(color, 1.0);
 }

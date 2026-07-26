@@ -3,8 +3,8 @@
 import { motion, useMotionTemplate, useMotionValue, useSpring } from "framer-motion";
 import { useEffect } from "react";
 
-const MOUSE_SPOTLIGHT_SIZE = 600;
-const TOUCH_SPOTLIGHT_SIZE = 420;
+const MOUSE_SPOTLIGHT_SIZE = 340;
+const TOUCH_SPOTLIGHT_SIZE = 240;
 
 export default function CursorMoodOverlay() {
   const pointerX = useMotionValue(0);
@@ -19,7 +19,8 @@ export default function CursorMoodOverlay() {
 
   const backgroundImage = useMotionTemplate`radial-gradient(
     ${smoothSize}px circle at ${smoothX}px ${smoothY}px,
-    rgb(var(--accent-rgb) / 0.16),
+    rgb(var(--accent-rgb) / 0.13) 0%,
+    rgba(139, 92, 246, 0.08) 55%,
     rgba(0, 0, 0, 0) 80%
   )`;
 

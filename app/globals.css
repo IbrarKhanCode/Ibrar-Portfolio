@@ -57,11 +57,19 @@ body {
 .space-bg-canvas {
   position: fixed;
   inset: 0;
-  width: 100vw;
-  height: 100vh;
   z-index: 0;
   pointer-events: none;
   display: block;
+  max-width: 100%;
+}
+
+/* Establishes its own stacking context so every page element — positioned
+   or not — reliably paints above the fixed background canvas (z-index:0 is
+   otherwise only guaranteed to sit above *other* non-positioned content,
+   not below it). */
+.page-content-layer {
+  position: relative;
+  z-index: 1;
 }
 
 .cursor-mood-overlay {
@@ -72,8 +80,9 @@ body {
   opacity: 0;
   transition: none;
   background: radial-gradient(
-    600px circle at 50% 50%,
-    rgb(var(--accent-rgb) / 0.15),
+    340px circle at 50% 50%,
+    rgb(var(--accent-rgb) / 0.13) 0%,
+    rgba(139, 92, 246, 0.08) 55%,
     rgba(0, 0, 0, 0) 80%
   );
   mix-blend-mode: normal;
@@ -762,16 +771,6 @@ b {
 .hero-panel {
   padding-top: 20px;
   position: relative;
-}
-
-.hero-panel::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background-image: radial-gradient(circle, rgba(94, 234, 212, 0.12) 1px, transparent 1px);
-  background-size: 26px 26px;
 }
 
 .hero-panel > * {
