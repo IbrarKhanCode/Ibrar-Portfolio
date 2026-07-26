@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import SpaceBackground from "@/components/SpaceBackground";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -74,7 +75,10 @@ export default function RootLayout({
         <link rel="shortcut icon" href="/ibrar.png" type="image/png" />
         <link rel="apple-touch-icon" href="/ibrar.png" />
       </head>
-      <body className={`${spaceGrotesk.variable} ${jetBrainsMono.variable}`}>{children}</body>
+      <body className={`${spaceGrotesk.variable} ${jetBrainsMono.variable}`}>
+        <SpaceBackground />
+        {children}
+      </body>
     </html>
   );
 }

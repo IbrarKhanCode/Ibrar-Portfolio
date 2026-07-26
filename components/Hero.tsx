@@ -1,4 +1,5 @@
 import Image from "next/image";
+import ParticleShatterText from "@/components/ParticleShatterText";
 
 export default function Hero() {
   return (
@@ -39,9 +40,7 @@ export default function Hero() {
           <p className="hero-kicker">
             Hi, my name is
           </p>
-          <h1 className="hero-title">
-            Muhammad Ibrar
-          </h1>
+          <ParticleShatterText text="Muhammad Ibrar" className="hero-title" />
         </div>
       </div>
 
